@@ -1,0 +1,358 @@
+<!--
+
+   planetarium.html
+
+   
+
+   Copyright 2018 roma <roma@roma>
+
+   
+
+   This program is free software; you can redistribute it and/or modify
+
+   it under the terms of the GNU General Public License as published by
+
+   the Free Software Foundation; either version 2 of the License, or
+
+   (at your option) any later version.
+
+   
+
+   This program is distributed in the hope that it will be useful,
+
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+   GNU General Public License for more details.
+
+   
+
+   You should have received a copy of the GNU General Public License
+
+   along with this program; if not, write to the Free Software
+
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+
+   MA 02110-1301, USA.
+
+   
+
+   
+
+-->
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+
+<head>
+
+	<title>ASCII code of characters</title>
+
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+	<meta name="generator" content="Geany 1.27" />
+
+	
+
+  <!-- <script type="text/javascript" src="usefulness1.js">		</script>   -->
+  
+	<script type="text/javascript" src="underscore_enhan1.js"></script> 
+
+
+
+
+
+
+
+    
+
+	<script type="text/javascript">
+
+	function getsymb(input,out) {
+		ascii =  document.getElementById(input).value;
+		symb = parseInt(ascii, 2);
+		symb = String.fromCharCode(symb);
+		document.getElementById(out).innerHTML = symb;
+		
+	}	
+
+	
+	function getasci(input,out) {
+		symb =  document.getElementById(input).value;
+		asci = symb.charCodeAt().toString(2); /* .toString(2) converts symbols into binary */
+		document.getElementById(out).innerHTML = asci;
+	}
+	
+	</script>
+
+</head>
+
+
+
+<body onload="load()">
+
+	<style>
+
+            body {
+
+                margin: 0;
+
+                padding: 0;
+
+                background-color: khaki;
+
+		    
+
+            }		
+
+         button, p, svg, div {
+
+			 position:absolute;
+
+			font-size:120%;
+
+		 }
+
+		 svg {
+
+			 border-style:solid;
+
+			 border-color:blue;
+
+		 }
+
+		.elemi, .solu {			
+
+			visibility:hidden;
+
+		}
+
+	#universe {
+
+		position:absolute;
+
+  	top:-950px;
+
+  	left:-500px;
+
+    width: 2700px;
+
+    height: 2700px;
+
+    border-style:none;
+
+    border-color:blue;
+
+    }
+
+
+    .planet {
+
+		position:absolute;
+
+      width: 400px;
+
+      height: 400px;
+
+      top:1150px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1150px;
+
+      -webkit-border-radius: 400px;
+
+      -moz-border-radius: 400px;
+
+      border-radius: 400px;
+
+      border-color: blue;
+
+      background: gray;
+
+    }
+
+    .crater1{
+
+		position:absolute;
+
+		width: 30px;
+
+      height: 30px;
+
+      -webkit-border-radius: 30px;
+
+      -moz-border-radius: 30px;
+
+      border-radius:100px;
+
+      border-color: blue;
+
+      background: #b8b894;
+
+	}
+
+	.crater2{
+
+		position:absolute;
+
+		width: 30px;
+
+      height: 30px;
+
+      -webkit-border-radius: 30px;
+
+      -moz-border-radius: 30px;
+
+      border-radius:100px;
+
+      border-color: blue;
+
+      background: 	#3d3d29;
+
+	}
+
+    #cohet {
+
+		position:absolute;
+
+      width: 20px;
+
+      height: 70px;
+
+      border-radius: 20px;
+
+      border-color: blue;
+
+      background: purple;
+
+      transform: rotate(0deg);
+
+    }
+    
+    .propfire {
+
+      width: 20px;
+
+      height: 30px;
+
+      border-radius: 50px;
+      
+      border-style:solid;
+      
+      border-width: 10px;
+      
+      top:-30px; left:-10px;
+
+      border-color: blue;
+
+      background: yellow;
+
+    }
+
+        .prop {
+
+      width: 20px;
+
+      height: 30px;
+
+      border-radius: 20px;
+
+      border-color: blue;
+
+      background: red;
+
+    }
+
+    #foc {
+
+		 visibility: hidden;
+
+	}
+	
+	    .bluedot, .bluedot2 {
+
+		  position:absolute;
+
+      width: 400px;
+
+      height: 400px;
+
+      top:1150px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1150px;
+
+      background: lightblue;
+
+	}
+	
+	.bluedot2 {
+
+		  position:absolute;
+
+      width: 40px;
+
+      height: 40px;
+
+      top:1350px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1350px;
+
+
+	}
+
+    
+
+		
+
+        </style>
+
+        <!-- watch out (mireu a fora!) SVG kicking in... -->
+
+
+	
+	
+	
+	
+	<div style="left:-20px;top:-150px;width:800px;">
+
+	<p  style="color:darkslategray;left:90px;top:140px;" > <b>ASCII code to Symbol <i>transformer:</i></b> </p>
+
+	<p id="aux" style="color:olive;left:100px;top:220px;" > input a <b>symbol</b>: 
+	<input type="text" id="in1" name="fname" placeholder="a" style="width:20px;"> 
+	</p> <button id="but1" style="color:green;left:300px;top:240px;" onclick="getasci('in1','out1')">get that ASCII </button>
+
+	<p id="aux3" style="color:olive;left:100px;top:250px;" > ASCII code: </p> 
+	<p id="out1" align="right" style="color:teal;visibility:visible;display:inline;background-color:moccasin;width:80px;left:220px;top:250px;" >
+	______</p>
+	
+
+	<p id="aux2" style="color:olive;left:100px;top:300px;" > input an <b> ASCII code </b>
+	<input type="text" id="in2" name="fname" placeholder="0000001" style="width:80px;"> 
+	</p> <button id="but2" style="color:green;left:400px;top:320px;" onclick="getsymb('in2','out2')">get the symbol </button>
+	
+
+	<p id="aux4" style="color:olive;left:100px;top:330px;" > Symbol: </p>
+	 <p id="out2" align="right" style="color:teal;visibility:visible;display:inline;background-color:moccasin;width:20px;left:180px;top:330px;" >_</p>
+	
+
+
+	</div>
+
+</body>
+
+
+
+</html>
