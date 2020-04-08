@@ -92,7 +92,7 @@
 			albet = abc.substring(alpha,26) + abc.substring(0,alpha);
 			alpha2 = albet.indexOf(encrypt[i]);/* getting the index of the letter being encoded*/
 			if(alpha2==-1||alpha==-1) {
-				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> you can only input the 26 English alphabet letters, or a space. No other character allowed!</i>";
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> you can only input the 26 English alphabet letters, or a space. No other character allowed!</i>";			/* done by roma domenech masana in chicago 04-2020*/
 			return ;
 			}
 			dec = abc[alpha2];
@@ -109,7 +109,7 @@
 		n=symb.length;
 		m=key.length;
 		if(m==0 || n==0) {
-				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> The text to encrypt and the key must contain some characters!</i>";
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> The text to encrypt and the key must contain some characters!</i>"; /* done by roma domenech masana in chicago 04-2020*/
 			return ;
 			}
 		vigen="";
@@ -125,7 +125,7 @@
 			vigen = vigen + enc;
 		}
 		/*document.getElementById(out).innerHTML = albet+"|m:"+m+"|n:"+n+
-		"|alpha:"+alpha+"|withoutsp:"+symb.replace(/ /g,'')+"|enc:"+enc+"|alph2:"+alpha2+"|cryptext:"+vigen;*/
+		"|alpha:"+alpha+"|withoutsp:"+symb.replace(/ /g,'')+"|enc:"+enc+"|alph2:"+alpha2+"|cryptext:"+vigen;*/ /* done by roma domenech masana in chicago 04-2020*/
 		document.getElementById(out).innerHTML =vigen;
 	}
 	
