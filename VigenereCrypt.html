@@ -1,0 +1,395 @@
+<!--
+
+   planetarium.html
+
+   
+
+   Copyright 2018 roma <roma@roma>
+
+   
+
+   This program is free software; you can redistribute it and/or modify
+
+   it under the terms of the GNU General Public License as published by
+
+   the Free Software Foundation; either version 2 of the License, or
+
+   (at your option) any later version.
+
+   
+
+   This program is distributed in the hope that it will be useful,
+
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+   GNU General Public License for more details.
+
+   
+
+   You should have received a copy of the GNU General Public License
+
+   along with this program; if not, write to the Free Software
+
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+
+   MA 02110-1301, USA.
+
+   
+
+   
+
+-->
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+
+<head>
+
+	<title>ASCII encrypt</title>
+
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+	<meta name="generator" content="Geany 1.27" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <script type="text/javascript" src="usefulness1.js">		</script>   -->
+  
+	<script type="text/javascript" src="underscore_enhan1.js"></script> 
+
+
+
+
+
+
+
+    
+
+	<script type="text/javascript">
+
+	function getstring(input1,out,inp2) {
+		abc =  "abcdefghijklmnopqrstuvwxyz";
+		encrypt =  document.getElementById(input1).value.replace(/ /g,'').toLowerCase(); /* we automatically delete white spaces */
+		key =  document.getElementById(inp2).value.replace(/ /g,'');
+		n=encrypt.length;
+		m=key.length;
+		if(m==0 || n==0) {
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> The text to encrypt and the key must contain some characters!</i>";
+			return ;
+			}
+		text="";
+		for (i=0; i<n; i++) {
+			alpha = abc.indexOf(key[i%m]);
+			albet = abc.substring(alpha,26) + abc.substring(0,alpha);
+			alpha2 = albet.indexOf(encrypt[i]);/* getting the index of the letter being encoded*/
+			if(alpha2==-1||alpha==-1) {
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> you can only input the 26 English alphabet letters, or a space. No other character allowed!</i>";
+			return ;
+			}
+			dec = abc[alpha2];
+			text = text + dec;
+		}
+		document.getElementById(out).innerHTML =text;
+	}	
+
+	
+	function getvigenere(input1,out,inp2) {
+		abc =  "abcdefghijklmnopqrstuvwxyz";
+		symb =  document.getElementById(input1).value.replace(/ /g,'').toLowerCase(); /* we automatically delete white spaces */
+		key =  document.getElementById(inp2).value.replace(/ /g,'');
+		n=symb.length;
+		m=key.length;
+		if(m==0 || n==0) {
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> The text to encrypt and the key must contain some characters!</i>";
+			return ;
+			}
+		vigen="";
+		for (i=0; i<n; i++) {
+			alpha = abc.indexOf(key[i%m]);
+			albet = abc.substring(alpha,26) + abc.substring(0,alpha);
+			alpha2 = abc.indexOf(symb[i]);/* getting the index of the letter being encoded*/
+			if(alpha2==-1||alpha==-1) {
+				document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> you can only input the 26 English alphabet letters, or a space. No other character allowed!</i>";
+			return ;
+			}
+			enc = albet[alpha2];
+			vigen = vigen + enc;
+		}
+		/*document.getElementById(out).innerHTML = albet+"|m:"+m+"|n:"+n+
+		"|alpha:"+alpha+"|withoutsp:"+symb.replace(/ /g,'')+"|enc:"+enc+"|alph2:"+alpha2+"|cryptext:"+vigen;*/
+		document.getElementById(out).innerHTML =vigen;
+	}
+	
+	
+	</script>
+
+</head>
+
+
+
+<body onload="load()">
+
+	<style>
+
+            body {
+
+
+                background-color: khaki;
+				
+				font-size:120%;
+		    
+
+            }		
+
+		button {
+			 font-weight: bold;
+		}
+
+
+		 svg {
+
+			 border-style:solid;
+
+			 border-color:blue;
+
+		 }
+
+		.elemi, .solu {			
+		
+			visibility:hidden;
+
+		}
+
+	#universe {
+
+		position:absolute;
+
+  	top:-950px;
+
+  	left:-500px;
+
+    width: 2700px;
+
+    height: 2700px;
+
+    border-style:none;
+
+    border-color:blue;
+
+    }
+
+
+    .planet {
+
+		position:absolute;
+
+      width: 400px;
+
+      height: 400px;
+
+      top:1150px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1150px;
+
+      -webkit-border-radius: 400px;
+
+      -moz-border-radius: 400px;
+
+      border-radius: 400px;
+
+      border-color: blue;
+
+      background: gray;
+
+    }
+
+    .crater1{
+
+		position:absolute;
+
+		width: 30px;
+
+      height: 30px;
+
+      -webkit-border-radius: 30px;
+
+      -moz-border-radius: 30px;
+
+      border-radius:100px;
+
+      border-color: blue;
+
+      background: #b8b894;
+
+	}
+
+	.crater2{
+
+		position:absolute;
+
+		width: 30px;
+
+      height: 30px;
+
+      -webkit-border-radius: 30px;
+
+      -moz-border-radius: 30px;
+
+      border-radius:100px;
+
+      border-color: blue;
+
+      background: 	#3d3d29;
+
+	}
+
+    #cohet {
+
+		position:absolute;
+
+      width: 20px;
+
+      height: 70px;
+
+      border-radius: 20px;
+
+      border-color: blue;
+
+      background: purple;
+
+      transform: rotate(0deg);
+
+    }
+    
+    .propfire {
+
+      width: 20px;
+
+      height: 30px;
+
+      border-radius: 50px;
+      
+      border-style:solid;
+      
+      border-width: 10px;
+      
+      top:-30px; left:-10px;
+
+      border-color: blue;
+
+      background: yellow;
+
+    }
+
+        .prop {
+
+      width: 20px;
+
+      height: 30px;
+
+      border-radius: 20px;
+
+      border-color: blue;
+
+      background: red;
+
+    }
+
+    #foc {
+
+		 visibility: hidden;
+
+	}
+	
+	    .bluedot, .bluedot2 {
+
+		  position:absolute;
+
+      width: 400px;
+
+      height: 400px;
+
+      top:1150px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1150px;
+
+      background: lightblue;
+
+	}
+	
+	.bluedot2 {
+
+		  position:absolute;
+
+      width: 40px;
+
+      height: 40px;
+
+      top:1350px;   /* universe center is at 1350 x 1350, rocket should be placed 
+
+					at 1650 x 1350*/
+
+      left:1350px;
+
+
+	}
+
+    
+
+		
+
+        </style>
+
+        <!-- watch out (mireu a fora!) SVG kicking in... -->
+
+
+	
+	
+	
+	
+	<div >
+
+	<p  style="color:darkslategray;" > <b>Vigenère code to String <i>transformer:</i></b> <i style="color:olive;font-size:80%;"> Constructed by Romà Masana, in Logan Square, Chicago 04-2020</i> <br>
+	<i style="color:gray;">The code that Louis XIV used to order imprisonment of the Iron Mask Frenchman!</i></p>
+	<br>
+	<p id="aux" style="color:olive;" > input a <b>text to encrypt</b>: 
+	<input type="text" id="in1" name="fname" placeholder="hello" style="width:200px;"> 
+	<input type="text" id="in2" name="fname" placeholder="key" style="width:200px;"> 
+	 <button id="but1" style="color:green;" onclick="getvigenere('in1','out1','in2')">get that Vigenère! </button></p>
+
+	<p id="aux3" style="color:olive;" > Vigenère code:  
+	<span id="out1" align="right" style="color:teal;visibility:visible;display:inline;background-color:moccasin;width:100px;" >
+	______</span> </p>
+	<br>
+
+	<p id="aux2" style="color:olive;" > input an <b> Vigenère code to decrypt</b>
+	<input type="text" id="in3" name="fname" placeholder="asdkjhjx" style="width:800px;"> 
+	<input type="text" id="in4" name="fname" placeholder="key" style="width:200px;">
+	 <button id="but2" style="color:green;" onclick="getstring('in3','out2','in4')">get the original text </button>
+	</p>
+
+	<p id="aux4" style="color:olive;" > Decrypted text: 
+	 <span id="out2" align="right" style="color:teal;visibility:visible;display:inline;background-color:moccasin;width:20px; " >_</span>
+	</p>
+	
+
+	</div>
+
+</body>
+
+
+
+</html>
