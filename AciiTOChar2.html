@@ -78,6 +78,7 @@
 
 	function getstring(input,out) {
 		ascii =  document.getElementById(input).value;
+		ascii = ascii.replace(/-/g,'');
 		n = ascii.length;
 		if( (n%8) != 0) {
 			document.getElementById(out).innerHTML = "<i style='color:red;'><b>error:</b> number of digits not a multiple of<b>8</b></i>";
